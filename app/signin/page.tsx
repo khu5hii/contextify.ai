@@ -2,8 +2,39 @@
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error);
+      return;
+    }
+
+    router.push("/dashboard");
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-4">
       <div className="w-full max-w-sm p-6 bg-[#141416] border border-[#262629] rounded-4xl">
@@ -44,7 +75,7 @@ export default function SignIn() {
           <div className="h-px flex-1 bg-[#272729]" />
         </div>
 
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
             <label className="uppercase text-xs font-semibold text-[#85858C] block mb-2">
               Email
@@ -72,6 +103,8 @@ export default function SignIn() {
                 type="email"
                 placeholder="you@company.com"
                 className="h-11 w-full bg-transparent outline-none text-white placeholder:text-sm placeholder:text-[#54545A]"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>
@@ -104,6 +137,8 @@ export default function SignIn() {
                 type="password"
                 placeholder="••••••••"
                 className="h-11 w-full bg-transparent outline-none text-white text-sm placeholder:text-[#54545A]"
+                value={password}
+                onChange={(e)=> setPassword(e.target.value)}
               />
             </div>
           </div>
