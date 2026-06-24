@@ -1,9 +1,34 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import { useState } from "react";
 import Link from "next/link";
 
 export default function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-4">
       <div className="w-full max-w-sm p-6 bg-[#141416] border border-[#262629] rounded-4xl">
@@ -44,10 +69,7 @@ export default function SignUp() {
           <div className="h-px flex-1 bg-[#272729]" />
         </div>
 
-        <form
-          className="flex flex-col gap-4"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
             <label className="uppercase text-xs font-semibold text-[#85858C] block mb-2">
               Name
@@ -77,6 +99,8 @@ export default function SignUp() {
                 autoComplete="name"
                 placeholder="Jane Doe"
                 className="h-11 w-full bg-transparent outline-none text-white placeholder:text-sm placeholder:font-thin placeholder:text-[#54545A]"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
           </div>
@@ -109,6 +133,8 @@ export default function SignUp() {
                 autoComplete="email"
                 placeholder="you@company.com"
                 className="h-11 w-full bg-transparent outline-none text-white placeholder:text-sm placeholder:text-[#54545A]"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>
@@ -142,6 +168,8 @@ export default function SignUp() {
                 autoComplete="new-password"
                 placeholder="••••••••"
                 className="h-11 w-full bg-transparent outline-none text-white text-sm placeholder:text-[#54545A]"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>
