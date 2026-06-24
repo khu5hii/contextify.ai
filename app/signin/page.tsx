@@ -50,7 +50,7 @@ export default function SignIn() {
               Email
             </label>
 
-            <div className="flex items-center gap-2 px-3 bg-[#0C0C0F] border border-[#1E1E22] rounded-4xl focus-within:ring-2 focus-within:ring-blue-500 transition-all">
+            <div className="flex items-center gap-2 px-3 bg-[#0C0C0F] border border-[#1E1E22] rounded-4xl focus-within:ring-1 focus-within:ring-blue-500 transition-all">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -81,7 +81,7 @@ export default function SignIn() {
               Password
             </label>
 
-            <div className="flex items-center gap-2 px-3 bg-[#0C0C0F] border border-[#1E1E22] rounded-4xl focus-within:ring-2 focus-within:ring-blue-500 transition-all">
+            <div className="flex items-center gap-2 px-3 bg-[#0C0C0F] border border-[#1E1E22] rounded-4xl focus-within:ring-1 focus-within:ring-blue-500 transition-all">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
