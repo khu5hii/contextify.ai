@@ -1,6 +1,8 @@
 import Navbar from "@/components/navbar";
 import { geistSans } from "@/lib/fonts";
 import Image from "next/image";
+import SignIn from "./signin/page";
+import Link from "next/link";
 
 const aiTools = [
   "ChatGPT",
@@ -24,13 +26,11 @@ const features = [
   },
   {
     title: "Competitor Discovery",
-    description:
-      "Identify direct and indirect competitors automatically.",
+    description: "Identify direct and indirect competitors automatically.",
   },
   {
     title: "Sales Intelligence",
-    description:
-      "Generate talking points, objections and outreach angles.",
+    description: "Generate talking points, objections and outreach angles.",
   },
 ];
 
@@ -92,6 +92,28 @@ export default function Landing() {
                 instantly. Generate comprehensive AI-ready context for ChatGPT,
                 Claude, Gemini, Cursor, and AI agents.
               </p>
+
+              <Link href="/signup">
+                <button className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-4xl p-2  pl-4 pr-4 mt-6 cursor-pointer">
+                  Get Started Free
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-arrow-right size-4"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              </Link>
             </div>
 
             <Image
@@ -174,17 +196,11 @@ export default function Landing() {
                   key={step.number}
                   className="rounded-3xl border border-[#272729] bg-[#141417] p-6"
                 >
-                  <p className="text-[#6875F6] mb-4 text-xs">
-                    {step.number}
-                  </p>
+                  <p className="text-[#6875F6] mb-4 text-xs">{step.number}</p>
 
-                  <h3 className="text-lg font-semibold mb-2">
-                    {step.title}
-                  </h3>
+                  <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
 
-                  <p className="text-[#81858C] text-sm">
-                    {step.description}
-                  </p>
+                  <p className="text-[#81858C] text-sm">{step.description}</p>
                 </div>
               ))}
             </div>
