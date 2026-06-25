@@ -4,6 +4,7 @@ import Link from "next/link";
 export default function Dashboard() {
   return (
     <>
+      <Sidebar />
       <main className="px-20">
         <div className="flex flex-col gap-8 p-6">
           <section className="flex flex-col gap-2">
