@@ -153,7 +153,7 @@ export default function Dashboard() {
               </p>
               <Link
                 href="#"
-                className="flex items-center gap-2 font-semibold text-sm bg-gradient-to-r from-[#0549ab] to-[#620cac] px-4 py-2 rounded-4xl transition-all duration-100 hover:from-[#0a5bd6] hover:to-[#7b15d1]">
+                className="flex items-center gap-2 font-semibold text-xs bg-gradient-to-r from-[#0549ab] to-[#620cac] px-4 py-2 rounded-4xl transition-all duration-100 hover:from-[#0a5bd6] hover:to-[#7b15d1] mt-2">
                 Create One
               </Link>
             </div>
