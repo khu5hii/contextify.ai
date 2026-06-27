@@ -9,8 +9,8 @@ export default function Sidebar() {
   const linkClass = (path: string) =>
     `flex items-center gap-3 rounded-4xl px-3 py-2 text-sm transition ${
       pathname === path
-        ? "bg-[#202024] text-white"
-        : "text-gray-300 hover:bg-[#1D1D1F] hover:text-white"
+        ? "bg-[#202024] text-[#828289]"
+        : "text-[#828289] hover:bg-[#1D1D1F] hover:text-white"
     }`;
 
   return (
@@ -22,6 +22,7 @@ export default function Sidebar() {
       </div>
 
       <div className="mt-4">
+        <Link href="/new">
         <button className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#0549ab] to-[#620cac] py-2 text-sm font-semibold transition hover:from-[#0a5bd6] hover:to-[#7b15d1]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,6 +39,7 @@ export default function Sidebar() {
           </svg>
           New Analysis
         </button>
+        </Link>
       </div>
 
       <nav className="mt-6 flex flex-col gap-2">
