@@ -1,12 +1,29 @@
+"use client";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function New() {
+  const [website, setWebsite] = useState("");
+  const handleAnalyze = async () => {
+    const response = await fetch("/api/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        website,
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
   return (
     <main className="py-10 px-10">
       <div className="mx-auto max-w-2xl space-y-8">
         <Link
           href="/dashboard"
-          className="pl-5 text-xs text-[#85858C] hover:text-white transition-colors"
+          className="pl-5 text-xs text-[#85858C] hover:text-white transition-colors "
         >
           ← Back to homepage
         </Link>
@@ -49,12 +66,14 @@ export default function New() {
                     id="website"
                     type="url"
                     required
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
                     placeholder="https://company.com"
                     className="h-5 w-full bg-transparent text-white caret-white outline-none placeholder:text-sm placeholder:text-[#808083] font-medium pt-1"
                   />
                 </label>
               </div>
-              <button className="flex justify-center items-center gap-2 bg-gradient-to-r from-[#0549ab] to-[#620cac] transition hover:from-[#0a5bd6] hover:to-[#7b15d1] py-2 w-full rounded-4xl">
+              <button onClick={handleAnalyze} className="flex justify-center items-center gap-2 bg-gradient-to-r from-[#0549ab] to-[#620cac] transition hover:from-[#0a5bd6] hover:to-[#7b15d1] py-2 w-full rounded-4xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
