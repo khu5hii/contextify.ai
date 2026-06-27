@@ -1,4 +1,3 @@
-import Sidebar from "@/components/sidebar";
 import Link from "next/link";
 
 export default function Exports() {
@@ -111,9 +110,17 @@ export default function Exports() {
           </section>
 
           <section>
-            <h1 className="uppercase font-medium text-sm tracking-widest text-[#85858c] mb-3">Per-analysis exports</h1>
+            <h1 className="uppercase font-medium text-sm tracking-widest text-[#85858c] mb-3">
+              Per-analysis exports
+            </h1>
             <div className="flex items-center justify-center bg-[#141416] border border-[#262629] rounded-3xl p-6">
-                <p className="text-sm text-[#85858c]">No analyses yet. <Link href="#" className="text-[#6875F6] hover:underline">Create one</Link>.</p>
+              <p className="text-sm text-[#85858c]">
+                No analyses yet.{" "}
+                <Link href="/new" className="text-[#6875F6] hover:underline">
+                  Create one
+                </Link>
+                .
+              </p>
             </div>
           </section>
         </div>
