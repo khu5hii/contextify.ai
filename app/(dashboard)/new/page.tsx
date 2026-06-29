@@ -1,9 +1,13 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function New() {
   const [website, setWebsite] = useState("");
+
+  const router = useRouter();
+
   const handleAnalyze = async () => {
     const response = await fetch("/api/analyze", {
       method: "POST",
@@ -11,12 +15,13 @@ export default function New() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        website,
+        url: website,
       }),
     });
 
     const data = await response.json();
-    console.log(data);
+
+    router.push(`/analysis/${data.id}`);
   };
   return (
     <main className="py-10 px-10">
@@ -73,7 +78,10 @@ export default function New() {
                   />
                 </label>
               </div>
-              <button onClick={handleAnalyze} className="flex justify-center items-center gap-2 bg-gradient-to-r from-[#0549ab] to-[#620cac] transition hover:from-[#0a5bd6] hover:to-[#7b15d1] py-2 w-full rounded-4xl">
+              <button
+                onClick={handleAnalyze}
+                className="flex justify-center items-center gap-2 bg-gradient-to-r from-[#0549ab] to-[#620cac] transition hover:from-[#0a5bd6] hover:to-[#7b15d1] py-2 w-full rounded-4xl"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
