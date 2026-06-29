@@ -15,3 +15,10 @@ model User {
   passwordHash String
   createdAt    DateTime @default(now())
 }
+
+model Analysis {
+  id        String   @id @default(cuid())
+  website   String
+  data      Json
+  createdAt DateTime @default(now())
+}
