@@ -1,7 +1,39 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
+import { extractContent } from "./extractor";
 
-const MAX_PAGES = 20;
+const MAX_PAGES = 10;
+
+const IMPORTANT_PAGES = [
+  "",
+  "about",
+  "company",
+  "products",
+  "product",
+  "pricing",
+  "enterprise",
+  "services",
+  "service",
+  "solutions",
+  "solution",
+  "features",
+];
+
+const COUNTRY_CODES = [
+  "in",
+  "us",
+  "uk",
+  "au",
+  "ca",
+  "de",
+  "fr",
+  "jp",
+  "sg",
+  "it",
+  "es",
+  "nl",
+  "be",
+];
 
 export async function downloadPage(url: string) {
   const response = await axios.get(url);
@@ -20,84 +52,99 @@ export async function downloadPage(url: string) {
     }
   });
 
-  const filteredLinks = filterLinks(url, links);
-
   return {
     url,
     html,
-    links: filteredLinks,
+    links: filterLinks(url, links),
   };
 }
 
 function filterLinks(baseUrl: string, links: string[]) {
-  const filtered: string[] = [];
+  const filtered = new Set<string>();
+  const hostname = new URL(baseUrl).hostname;
 
   for (const link of links) {
     try {
-      const absoluteUrl = new URL(link, baseUrl);
+      const absolute = new URL(link, baseUrl);
 
-      // Ignore external domains
-      if (absoluteUrl.hostname !== new URL(baseUrl).hostname) {
-        continue;
-      }
+      if (absolute.hostname !== hostname) continue;
 
-      // Ignore fragments
-      if (absoluteUrl.hash) {
-        continue;
-      }
-
-      // Ignore mailto:, tel:, javascript:
       if (
-        absoluteUrl.protocol !== "http:" &&
-        absoluteUrl.protocol !== "https:"
+        absolute.protocol !== "http:" &&
+        absolute.protocol !== "https:"
       ) {
         continue;
       }
 
-      filtered.push(absoluteUrl.href);
+      absolute.hash = "";
+      absolute.search = "";
+
+      const segments = absolute.pathname
+        .toLowerCase()
+        .split("/")
+        .filter(Boolean);
+
+      // Homepage
+      if (segments.length === 0) {
+        filtered.add(absolute.href);
+        continue;
+      }
+
+      // Skip locale prefixes (/in, /au, etc.)
+      let first = segments[0];
+
+      if (COUNTRY_CODES.includes(first) && segments.length > 1) {
+        first = segments[1];
+      }
+
+      // Ignore nested pages like /connect/pricing
+      if (
+        segments.length > 2 ||
+        (COUNTRY_CODES.includes(segments[0]) && segments.length > 3)
+      ) {
+        continue;
+      }
+
+      if (IMPORTANT_PAGES.includes(first)) {
+        filtered.add(absolute.href);
+      }
     } catch {
       // Ignore invalid URLs
     }
   }
 
-  return [...new Set(filtered)];
+  return [...filtered];
 }
 
 export async function crawlWebsite(startUrl: string) {
-  const queue: string[] = [startUrl];
-  const visited = new Set<string>();
-
   const pages: {
     url: string;
-    html: string;
+    text: string;
   }[] = [];
 
-  while (queue.length > 0 && visited.size < MAX_PAGES) {
-    const currentUrl = queue.shift();
+  // Crawl homepage first
+  console.log(`Crawling: ${startUrl}`);
 
-    if (!currentUrl) continue;
+  const home = await downloadPage(startUrl);
 
-    if (visited.has(currentUrl)) continue;
+  pages.push({
+    url: home.url,
+    text: extractContent(home.html),
+  });
 
-    console.log(`Crawling: ${currentUrl}`);
-
-    visited.add(currentUrl);
-
+  // Only crawl important pages from homepage
+  for (const link of home.links.slice(0, MAX_PAGES - 1)) {
     try {
-      const page = await downloadPage(currentUrl);
+      console.log(`Crawling: ${link}`);
+
+      const page = await downloadPage(link);
 
       pages.push({
-        url: currentUrl,
-        html: page.html,
+        url: page.url,
+        text: extractContent(page.html),
       });
-
-      for (const link of page.links) {
-        if (!visited.has(link)) {
-          queue.push(link);
-        }
-      }
-    } catch (error) {
-      console.log(`Failed to crawl ${currentUrl}`);
+    } catch {
+      console.log(`Failed to crawl ${link}`);
     }
   }
 
