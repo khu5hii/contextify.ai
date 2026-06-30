@@ -23,6 +23,9 @@ export default function Test() {
 
     setSaved((prev) => !prev);
   };
+
+  const [activeTab, setActiveTab] = useState("overview");
+
   return (
     <>
       <main className="mx-auto max-w-6xl px-4 pb-28 pt-4 lg:px-8 lg:pt-8">
@@ -122,12 +125,68 @@ export default function Test() {
           </div>
         </header>
 
-        {/* <div>
-        <button>Overview</button>
-        <button>Products</button>
-        <button>Audience</button>
-        <button>AI Context</button>
-      </div> */}
+        <div className="flex pt-6 gap-4">
+          <button
+            onClick={() => {
+              setActiveTab("overview");
+            }}
+            className={`p-2 rounded-2xl pr-4 pl-4 text-sm ${
+              activeTab === "overview"
+              ? "text-white -translate-y-0.5 bg-[#17171A]"
+              : "text-[#85858c] hover:text-white"
+            }`}
+          >
+            Overview
+            {activeTab === "overview" && (
+              <span className="mx-auto mt-1 block h-0.5 w-6 rounded-full bg-[#6875f6]"></span>
+            )}
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab("products");
+            }}
+            className={`p-2 rounded-2xl pr-4 pl-4 text-sm ${
+            activeTab === "products"
+            ? "text-white -translate-y-0.5 bg-[#17171A]"
+            : "text-[#85858c] hover:text-white"
+            }`}
+          >
+            Products
+            {activeTab === "products" && (
+              <span className="mx-auto mt-1 block h-0.5 w-6 rounded-full bg-[#6875f6]"></span>
+            )}
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab("audience");
+            }}
+            className={`p-2 rounded-2xl pr-4 pl-4 text-sm ${
+            activeTab === "audience"
+            ? "text-white -translate-y-0.5 bg-[#17171A]"
+            : "text-[#85858c] hover:text-white"
+            }`}
+          >
+            Audience
+            {activeTab === "audience" && (
+              <span className="mx-auto mt-1 block h-0.5 w-6 rounded-full bg-[#6875f6]"></span>
+            )}
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab("aicontext");
+            }}
+            className={`p-2 rounded-2xl pr-4 pl-4 text-sm ${
+            activeTab === "aicontext"
+            ? "text-white -translate-y-0.5 bg-[#17171A]"
+            : "text-[#85858c] hover:text-white"
+            }`}
+          >
+            AI Context
+            {activeTab === "aicontext" && (
+              <span className="mx-auto mt-1 block h-0.5 w-6 rounded-full bg-[#6875f6]"></span>
+            )}
+          </button>
+        </div>
       </main>
     </>
   );
