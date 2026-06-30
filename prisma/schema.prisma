@@ -22,3 +22,12 @@ model Analysis {
   data      Json
   createdAt DateTime @default(now())
 }
+
+model SavedContext {
+  id        String   @id @default(cuid())
+  company   String
+  website   String?
+  industry  String?
+  analysis  Json
+  createdAt DateTime @default(now())
+}
