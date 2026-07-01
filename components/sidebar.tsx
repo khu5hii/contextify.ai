@@ -14,7 +14,7 @@ export default function Sidebar() {
     }`;
 
   return (
-    <aside className="flex h-screen w-64 flex-col border-r border-[#1D1D1F] bg-[#111114] p-4">
+    <aside className="fixed left-0 top-0 flex h-screen w-64 flex-col border-r border-[#1D1D1F] bg-[#111114] p-4">
       <div className="border-b border-[#1D1D1F] pb-4">
         <h1 className="text-sm font-semibold">
           Contextify <span className="text-[#5C67D7]">AI</span>
