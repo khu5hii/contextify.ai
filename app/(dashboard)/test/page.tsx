@@ -57,6 +57,7 @@ export default function Test() {
           </svg>
           All analyses
         </Link>
+
         {/* Header/ Company Name */}
         <header className="flex flex-wrap items-start gap-5 bg-[#141416] p-8 border border-[#262629] rounded-4xl">
           <div className=" min-w-0 flex-1">
@@ -133,7 +134,6 @@ export default function Test() {
         </header>
 
         {/* Tabs */}
-
         <div className="flex pt-6 gap-4">
           <button
             onClick={() => {
@@ -198,7 +198,6 @@ export default function Test() {
         </div>
 
         {/* Actual Info */}
-
         <div>
           {activeTab === "overview" && (
             <>
@@ -409,6 +408,79 @@ export default function Test() {
               </div>
             </>
           )}
+
+          {activeTab === "audience" && (
+            <>
+              <div className="grid gap-4 lg:grid-cols-1 pt-6">
+                {/* Target Audience */}
+                <div className="bg-[#17171A] rounded-3xl p-2 lg:p-5 lg:space-y-2 border border-[#262629] text-sm">
+                  <p
+                    className={`uppercase text-xs tracking-widest text-[#6875f6] ${shareTechMono.className} `}
+                  >
+                    Target Audience
+                  </p>
+                  <p className="leading-6 text-[#DBDBE0]">
+                    Stripe targets a broad spectrum of digital-first entities,
+                    ranging from individual developers and small SaaS startups
+                    to massive global marketplaces and traditional enterprises
+                    undergoing digital transformation. They focus on businesses
+                    that require scalable, reliable, and developer-friendly
+                    financial tools.
+                  </p>
+                </div>
+
+                {/* Persona */}
+                <div className="bg-[#17171A] rounded-3xl p-2 lg:p-5 lg:space-y-2 border border-[#262629] text-sm">
+                  <p
+                    className={`uppercase text-xs tracking-widest text-[#00BC6E] ${shareTechMono.className} `}
+                  >
+                    Persona · The Technical Founder
+                  </p>
+                  <p className="leading-6 text-[#DBDBE0]">
+                    Seeks a robust API with excellent documentation to get
+                    payments running instantly without worrying about legacy
+                    banking complexity.
+                  </p>
+                </div>
+
+                {/* Pain Points */}
+                <div className="bg-[#17171A] rounded-3xl p-2 lg:p-5 lg:space-y-2 border border-[#262629] text-sm">
+                  <p
+                    className={`uppercase text-xs tracking-widest text-[#6875f6] ${shareTechMono.className} `}
+                  >
+                    Pain Points
+                  </p>
+                  <ul className="space-y-1.5 pt-2">
+                    <li className="flex gap-2 text-sm">
+                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                      High complexity of global payment regulations
+                    </li>
+                    <li className="flex gap-2 text-sm">
+                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                      Difficulty managing recurring billing and churn
+                    </li>
+                    <li className="flex gap-2 text-sm">
+                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                      Integration friction with legacy banking systems
+                    </li>
+                    <li className="flex gap-2 text-sm">
+                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                      Vulnerability to online payment fraud
+                    </li>
+                    <li className="flex gap-2 text-sm">
+                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                      Inefficient reconciliation and financial reporting
+                    </li>
+                    <li className="flex gap-2 text-sm">
+                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                      Inability to scale cross-border payments
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          )}
+
         </div>
       </main>
     </>
