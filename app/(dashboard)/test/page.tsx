@@ -697,6 +697,91 @@ export default function Test() {
                   {aiContextPackage}
                 </pre>
               </div>
+
+              {/* Tabs */}
+              <div className="grid grid-cols-2 gap-2 lg:grid-cols-4 pt-6">
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-download size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 15V3"></path>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <path d="m7 10 5 5 5-5"></path>
+                  </svg>
+                  Export TXT
+                </button>
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-download size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 15V3"></path>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <path d="m7 10 5 5 5-5"></path>
+                  </svg>
+                  Export Markdown
+                </button>
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-download size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 15V3"></path>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <path d="m7 10 5 5 5-5"></path>
+                  </svg>
+                  Export JSON
+                </button>
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-download size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 15V3"></path>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <path d="m7 10 5 5 5-5"></path>
+                  </svg>
+                  Print / PDF
+                </button>
+                
+              </div>
             </>
           )}
         </div>
