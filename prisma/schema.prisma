@@ -17,10 +17,11 @@ model User {
 }
 
 model Analysis {
-  id        String   @id @default(cuid())
-  website   String
-  data      Json
-  createdAt DateTime @default(now())
+  id            String   @id @default(cuid())
+  website       String
+  normalizedUrl String   @unique
+  data          Json
+  createdAt     DateTime @default(now())
 }
 
 model SavedContext {
