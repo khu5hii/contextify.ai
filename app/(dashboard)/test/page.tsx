@@ -111,7 +111,7 @@ export default function Test() {
     <>
       <main className="mx-auto max-w-6xl px-4 pb-28 pt-4 lg:px-8 lg:pt-8">
         <Link
-          href="#"
+          href="/analyses"
           className="inline-flex items-center gap-1.5 text-xs text-[#85858c] hover:text-white pb-6"
         >
           <svg
