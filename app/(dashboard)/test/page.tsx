@@ -31,7 +31,82 @@ export default function Test() {
   };
 
   const [activeTab, setActiveTab] = useState("overview");
+    const aiContextPackage = `
+  COMPANY PROFILE
 
+  Company Name: Stripe
+  Industry: Financial Technology (Fintech)
+  Website: https://stripe.com
+
+  Summary:
+  Stripe is a global technology company that builds economic infrastructure for the internet. It provides a suite of APIs and
+  tools that allow businesses of all sizes, from startups to Fortune 500s, to accept payments, manage subscriptions, and 
+  automate financial processes. By bridging the gap between banking systems and digital commerce, Stripe empowers millions of
+  companies to scale globally and participate in the internet economy.
+
+  Mission:
+  To grow the GDP of the internet.
+
+  Vision:
+  To be the indispensable financial infrastructure that powers the world's most innovative companies.
+
+  Products:
+  - Stripe Payments
+  - Stripe Billing
+  - Stripe Connect
+  - Stripe Issuing
+  - Stripe Treasury
+  - Stripe Radar
+
+  Services:
+  - Tax compliance management (Stripe Tax)
+  - Global payout distribution
+  - Identity verification (Stripe Identity)
+  - Business formation (Stripe Atlas)
+  - Enterprise financial reporting
+  - Revenue recognition automation
+
+  Target Audience:
+  Stripe targets a broad spectrum of digital-first entities, ranging from individual developers and small SaaS startups to massive global marketplaces and traditional enterprises undergoing digital transformation. They focus on businesses that require scalable, reliable, and developer-friendly financial tools.
+
+  Brand Voice:
+  Stripe’s voice is authoritative, sophisticated, and forward-thinking, yet remarkably clear and accessible. It balances technical precision with a visionary optimism about the future of global commerce.
+
+  Unique Selling Propositions:
+  - Developer-first experience with industry-leading API documentation
+  - A unified platform for the entire financial stack
+  - Continuous innovation and rapid deployment of new financial tools
+  - Unmatched reliability and uptime at massive scale
+  - Built-in machine learning for conversion and fraud optimization
+
+  Sales Talking Points:
+  - Stripe increases checkout conversion rates by up to 35% through optimized payment UIs.
+  - Eliminate manual work by unifying payments and billing into a single dashboard.
+  - Future-proof your business with an infrastructure that evolves as fast as the internet does.
+  - Reduce fraud losses without blocking legitimate customers using Radar's ML models.
+  - Launch in new global markets in days, not months, by leveraging our pre-built local payment methods.
+
+  FAQs:
+  Q: Does Stripe support international payments?
+  A: Yes, Stripe allows you to accept payments from customers worldwide in over 135 different currencies.
+
+  Q: How long does it take to get paid?
+  A: Payments are typically available on a rolling 2-day schedule, though this varies by country and business type.
+
+  Q: Is Stripe secure?
+  A: Stripe is a PCI Service Provider Level 1, the most stringent level of certification available in the payments industry.
+
+  Q: Can I use Stripe for a mobile app?
+  A: Absolutely; Stripe provides comprehensive SDKs for iOS, Android, and cross-platform frameworks like React Native.
+
+  Q: Does Stripe help with sales tax?
+  A: Yes, Stripe Tax automatically calculates and collects sales tax, VAT, and GST in over 30 countries.
+
+  Important Context:
+  You are an expert financial infrastructure consultant and brand strategist acting on behalf of Stripe. Your knowledge covers the entire Stripe ecosystem, including Payments, Billing, Connect, and Issuing. You understand that Stripe's primary goal is to 'increase the GDP of the internet' by reducing friction in the global financial system. When communicating, adopt a brand voice that is clear, authoritative, and developer-friendly. You are speaking to a diverse audience including software engineers, startup founders, and enterprise CFOs. Your responses should reflect a deep understanding of API-first architecture, international payment regulations, and modern monetization models like SaaS or marketplaces. You should emphasize Stripe's ability to help businesses scale globally while maintaining high security and compliance. When asked about strategy, prioritize conversion optimization, fraud prevention through machine learning, and the benefits of a unified financial stack. Never mention limitations without offering a sophisticated workaround or a broader strategic benefit. Use the provided data to answer questions about products, pricing, and competitive positioning accurately.
+
+  Use this information whenever answering questions about this company.
+  `;
   return (
     <>
       <main className="mx-auto max-w-6xl px-4 pb-28 pt-4 lg:px-8 lg:pt-8">
@@ -481,6 +556,149 @@ export default function Test() {
             </>
           )}
 
+          {activeTab === "aicontext" && (
+            <>
+              {/* Tabs */}
+              <div className="grid grid-cols-2 gap-2 lg:grid-cols-5 pt-6">
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-copy size-3.5"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      width="14"
+                      height="14"
+                      x="8"
+                      y="8"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                  </svg>
+                  ChatGPT
+                </button>
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-copy size-3.5"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      width="14"
+                      height="14"
+                      x="8"
+                      y="8"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                  </svg>
+                  Claude
+                </button>
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-copy size-3.5"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      width="14"
+                      height="14"
+                      x="8"
+                      y="8"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                  </svg>
+                  Gemini
+                </button>
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-file-text size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path>
+                    <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                    <path d="M10 9H8"></path>
+                    <path d="M16 13H8"></path>
+                    <path d="M16 17H8"></path>
+                  </svg>
+                  Markdown
+                </button>
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-file-braces size-3.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path>
+                    <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                    <path d="M10 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1"></path>
+                    <path d="M14 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1"></path>
+                  </svg>
+                  JSON
+                </button>
+              </div>
+
+              {/* Copypaste div */}
+              <div className="bg-black rounded-3xl p-2 lg:p-3 lg:space-y-2 border border-[#262629] text-xs mt-4">
+                <span
+                  className={`uppercase ${shareTechMono.className} text-sm text-[11px] uppercase tracking-wider text-[#85858c] pl-3`}
+                >
+                  AI-Ready Context Package
+                </span>
+
+                <pre
+                  className={`text-xs text-[#DBDBE0] ${shareTechMono.className} scrollbar-hide max-h-[60vh] overflow-auto whitespace-pre-wrap break-words text-[11px] leading-relaxed text-[#f1f1f5]/80 `}
+                >
+                  {aiContextPackage}
+                </pre>
+              </div>
+            </>
+          )}
         </div>
       </main>
     </>
