@@ -2,6 +2,7 @@ import { ai } from "@/lib/gemini";
 import { crawlWebsite } from "@/lib/crawler";
 import { mergeCompanyContent } from "@/lib/companyParser";
 import { prisma } from "@/lib/prisma";
+import { normalizeUrl } from "@/lib/normalizeUrl";
 
 export async function POST(req: Request) {
   try {
@@ -13,6 +14,20 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+    const normalizedUrl = normalizeUrl(url);
+    const existing = await prisma.analysis.findUnique({
+      where: {
+        normalizedUrl,
+      },
+    });
+
+    if (existing) {
+      return Response.json({
+        id: existing.id,
+        cached: true,
+      });
+    }
+
     const pages = await crawlWebsite(url);
 
     const companyContent = mergeCompanyContent(pages);
@@ -88,11 +103,12 @@ export async function POST(req: Request) {
       .trim();
 
     const analysis = JSON.parse(cleaned);
-    // console.log(JSON.stringify(analysis, null, 2));
+    console.log(JSON.stringify(analysis, null, 2));
 
     const saved = await prisma.analysis.create({
       data: {
         website: url,
+        normalizedUrl,
         data: analysis,
       },
     });
