@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { copyContext } from "@/lib/ai-context/copy";
 import { getAIContext, getJsonContext, getMarkdownContext } from "@/lib/ai-context/formatContext";
+import { exportPdf } from "@/lib/ai-context/export";
 import {
   exportTxt,
   exportMarkdown,
   exportJson,
-  printPdf,
 } from "@/lib/ai-context/export";
 
 const shareTechMono = Share_Tech_Mono({
@@ -779,7 +779,7 @@ export default function Test() {
                   </svg>
                   Export JSON
                 </button>
-                <button onClick={printPdf} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
+                <button onClick={() => exportPdf(analysis.company, versions.chatgpt)} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
