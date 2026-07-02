@@ -4,6 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { copyContext } from "@/lib/ai-context/copy";
 import { getAIContext, getJsonContext, getMarkdownContext } from "@/lib/ai-context/formatContext";
+import {
+  exportTxt,
+  exportMarkdown,
+  exportJson,
+  printPdf,
+} from "@/lib/ai-context/export";
+
 const shareTechMono = Share_Tech_Mono({
   subsets: ["latin"],
   weight: "400",
@@ -18,6 +25,7 @@ export default function Test() {
     website: "stripe.com",
     industry: "Financial Technology (Fintech)",
   };
+  
   const handleSave = async () => {
     if (!saved) {
       await fetch("/api/saved-contexts", {
@@ -711,7 +719,7 @@ export default function Test() {
 
               {/* Tabs */}
               <div className="grid grid-cols-2 gap-2 lg:grid-cols-4 pt-6">
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
+                <button onClick={() => exportTxt(analysis.company, versions.chatgpt)} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -731,7 +739,7 @@ export default function Test() {
                   </svg>
                   Export TXT
                 </button>
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
+                <button onClick={() => exportMarkdown(analysis.company, versions.markdown)} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -751,7 +759,7 @@ export default function Test() {
                   </svg>
                   Export Markdown
                 </button>
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
+                <button onClick={() => exportJson(analysis.company, versions.json)} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -771,7 +779,7 @@ export default function Test() {
                   </svg>
                   Export JSON
                 </button>
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
+                <button onClick={printPdf} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
