@@ -2,13 +2,15 @@
 import { Share_Tech_Mono } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
-
+import { copyContext } from "@/lib/ai-context/copy";
+import { getAIContext, getJsonContext, getMarkdownContext } from "@/lib/ai-context/formatContext";
 const shareTechMono = Share_Tech_Mono({
   subsets: ["latin"],
   weight: "400",
 });
 
 export default function Test() {
+
   const [saved, setSaved] = useState(false);
 
   const analysis = {
@@ -31,7 +33,7 @@ export default function Test() {
   };
 
   const [activeTab, setActiveTab] = useState("overview");
-    const aiContextPackage = `
+  const aiContextPackage = `
   COMPANY PROFILE
 
   Company Name: Stripe
@@ -107,6 +109,15 @@ export default function Test() {
 
   Use this information whenever answering questions about this company.
   `;
+  
+  const versions = {
+    chatgpt: getAIContext(analysis),
+    claude: getAIContext(analysis),
+    gemini: getAIContext(analysis),
+    markdown: getMarkdownContext(analysis),
+    json: getJsonContext(analysis),
+  };
+  
   return (
     <>
       <main className="mx-auto max-w-6xl px-4 pb-28 pt-4 lg:px-8 lg:pt-8">
@@ -560,7 +571,7 @@ export default function Test() {
             <>
               {/* Tabs */}
               <div className="grid grid-cols-2 gap-2 lg:grid-cols-5 pt-6">
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                <button onClick={() => copyContext("chatgpt", versions)} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -586,7 +597,7 @@ export default function Test() {
                   </svg>
                   ChatGPT
                 </button>
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                <button onClick={() => copyContext("claude", versions)} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -612,7 +623,7 @@ export default function Test() {
                   </svg>
                   Claude
                 </button>
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                <button onClick={() => copyContext("claude", versions)} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -638,7 +649,7 @@ export default function Test() {
                   </svg>
                   Gemini
                 </button>
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                <button onClick={() => copyContext("markdown", versions)} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -660,7 +671,7 @@ export default function Test() {
                   </svg>
                   Markdown
                 </button>
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
+                <button onClick={() => copyContext("json", versions)} className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-[#262629] bg-[#17171A] text-xs font-semibold hover:border-[#6875f6]/40 hover:bg-[#202024]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
