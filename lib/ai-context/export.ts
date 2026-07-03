@@ -44,7 +44,7 @@ export function exportPdf(filename: string, content: string) {
 
   let y = margin;
 
-  lines.forEach((line) => {
+  lines.forEach((line: string) => {
     if (y > pageHeight - margin) {
       doc.addPage();
       y = margin;
