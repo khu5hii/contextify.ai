@@ -37,8 +37,8 @@ export function exportPdf(filename: string, content: string) {
 
   const usableWidth = pageWidth - margin * 2;
 
-  doc.setFont("courier", "normal"); // nice for AI context
-  doc.setFontSize(10); // much smaller
+  doc.setFont("courier", "normal"); 
+  doc.setFontSize(10);
 
   const lines = doc.splitTextToSize(content, usableWidth);
 
@@ -51,7 +51,7 @@ export function exportPdf(filename: string, content: string) {
     }
 
     doc.text(line, margin, y);
-    y += 5; // line height
+    y += 5; 
   });
 
   doc.save(`${filename}.pdf`);
