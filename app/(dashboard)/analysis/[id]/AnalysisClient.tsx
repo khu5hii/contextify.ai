@@ -279,30 +279,12 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Products
                   </p>
                   <ul className="space-y-1.5 pt-2">
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Stripe Payments
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Stripe Billing
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Stripe Connect
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Stripe Issuing
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Stripe Treasury
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Stripe Radar
-                    </li>
+                    {data.products.products?.map((products: string, index: number) => (
+                      <li key={index} className="flex gap-2 text-sm">
+                        <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                        <span>{products}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -313,30 +295,12 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Services
                   </p>
                   <ul className="space-y-1.5 pt-2">
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Tax compliance management (Stripe Tax)
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Global payout distribution
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Identity verification (Stripe Identity)
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Business formation (Stripe Atlas)
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Enterprise financial reporting
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Revenue recognition automation
-                    </li>
+                    {data.products.services?.map((services: string, index: number) => (
+                      <li key={index} className="flex gap-2 text-sm">
+                        <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                        <span>{services}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -347,38 +311,12 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Features
                   </p>
                   <ul className="space-y-1.5 pt-2">
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Pre-built checkout optimization
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Multi-currency support for 135+ currencies
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Advanced fraud detection with machine learning
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Scalable API-first architecture
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Real-time data orchestration and reporting
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Customizable UI components
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Direct bank integrations
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      24/7 global support
-                    </li>
+                    {data.products.features?.map((features: string, index: number) => (
+                      <li key={index} className="flex gap-2 text-sm">
+                        <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                        <span>{features}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
@@ -389,9 +327,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Pricing
                   </p>
                   <p className="leading-6 text-[#DBDBE0]">
-                    Transparent pay-as-you-go pricing (2.9% + 30 cents per
-                    transaction) for most users, with custom volume-based
-                    discounts for large enterprises.
+                    {data.products.pricing}
                   </p>
                 </div>
               </div>
