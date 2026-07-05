@@ -571,7 +571,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
               {/* Tabs */}
               <div className="grid grid-cols-2 gap-2 lg:grid-cols-4 pt-6">
                 <button
-                  onClick={() => exportTxt(analysis.company, versions.chatgpt)}
+                  onClick={() => exportTxt(data.companyName, versions.chatgpt)}
                   className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white"
                 >
                   <svg
@@ -595,7 +595,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                 </button>
                 <button
                   onClick={() =>
-                    exportMarkdown(analysis.company, versions.markdown)
+                    exportMarkdown(data.companyName, versions.markdown)
                   }
                   className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white"
                 >
@@ -619,7 +619,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                   Export Markdown
                 </button>
                 <button
-                  onClick={() => exportJson(analysis.company, versions.json)}
+                  onClick={() => exportJson(data.companyName, data)}
                   className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white"
                 >
                   <svg
@@ -642,7 +642,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                   Export JSON
                 </button>
                 <button
-                  onClick={() => exportPdf(analysis.company, versions.chatgpt)}
+                  onClick={() => exportPdf(data.companyName, versions.chatgpt)}
                   className="flex h-10 items-center justify-center gap-1.5 rounded-4xl border border-dashed border-[#262629] bg-[#0A0A0C] text-xs text-[#85858C] font-semibold hover:border-[#6875f6]/40 hover:border-dashed hover:text-white"
                 >
                   <svg
