@@ -129,10 +129,6 @@ export async function POST(req: Request) {
 
       Unique Selling Propositions
 
-      Competitive Advantages
-
-      Competitors
-
       Strengths
 
       Weaknesses
@@ -153,6 +149,58 @@ export async function POST(req: Request) {
       - not markdown
       - not JSON
       - contained entirely inside the aiContextPackage string.
+      - Every section heading MUST end with a colon (:).
+      - Every section containing multiple items MUST use one bullet per line.
+      - Use "-" for every bullet point.
+      - Never separate list items with commas.
+      - Format the lists output exactly like this:
+
+      Products:
+      - Product 1
+      - Product 2
+      - Product 3
+
+      Services:
+      - Service 1
+      - Service 2
+      - Service 3
+
+      Features:
+      - Feature 1
+      - Feature 2
+      - Feature 3
+
+      Unique Selling Propositions:
+      - USP 1
+      - USP 2
+      - USP 3
+
+      Strengths:
+      - Strength 1
+      - Strength 2
+
+      Weaknesses:
+      - Weakness 1
+      - Weakness 2
+
+      Opportunities:
+      - Opportunity 1
+      - Opportunity 2
+
+      Threats:
+      - Threat 1
+      - Threat 2
+
+      Important Context:
+      You are now acting as an expert consultant and brand strategist representing this company. Use all of the information provided above as the foundation for your responses.
+
+      Adopt the company's brand voice, values, positioning, and communication style. Tailor your responses to the company's products, services, target audience, and industry. Your answers should demonstrate a deep understanding of the company's business model, competitive landscape, customer needs, and unique value proposition.
+
+      When discussing strategy, prioritize the company's strengths, differentiators, and long-term objectives. Recommend solutions and best practices that align with the company's mission, vision, and market positioning. Maintain consistency with the company's messaging and avoid contradicting the information provided above.
+
+      When information is unavailable, state that it is not specified rather than making assumptions or inventing facts.
+
+      Use this information whenever answering questions about this company.
 
       Website Content:
 
