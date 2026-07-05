@@ -2,10 +2,9 @@ import axios from "axios";
 import * as cheerio from "cheerio";
 import { extractContent } from "./extractor";
 
-const MAX_PAGES = 10;
+const MAX_PAGES = 15;
 
-const IMPORTANT_PAGES = [
-  "",
+const IMPORTANT_KEYWORDS = [
   "about",
   "company",
   "products",
@@ -17,6 +16,16 @@ const IMPORTANT_PAGES = [
   "solutions",
   "solution",
   "features",
+  "jobs",
+  "careers",
+  "culture",
+  "values",
+  "mission",
+  "vision",
+  "team",
+  "teams",
+  "compatibility",
+  "contact",
 ];
 
 const COUNTRY_CODES = [
@@ -61,6 +70,7 @@ export async function downloadPage(url: string) {
 
 function filterLinks(baseUrl: string, links: string[]) {
   const filtered = new Set<string>();
+
   const hostname = new URL(baseUrl).hostname;
 
   for (const link of links) {
@@ -90,22 +100,22 @@ function filterLinks(baseUrl: string, links: string[]) {
         continue;
       }
 
-      // Skip locale prefixes (/in, /au, etc.)
-      let first = segments[0];
+      // Remove locale prefixes like /in/about
+      const cleanSegments = [...segments];
 
-      if (COUNTRY_CODES.includes(first) && segments.length > 1) {
-        first = segments[1];
+      if (COUNTRY_CODES.includes(cleanSegments[0])) {
+        cleanSegments.shift();
       }
 
-      // Ignore nested pages like /connect/pricing
-      if (
-        segments.length > 2 ||
-        (COUNTRY_CODES.includes(segments[0]) && segments.length > 3)
-      ) {
-        continue;
-      }
+      // Prevent crawling extremely deep URLs
+      if (cleanSegments.length > 4) continue;
 
-      if (IMPORTANT_PAGES.includes(first)) {
+      // Keep pages if ANY segment is important
+      const isImportant = cleanSegments.some((segment) =>
+        IMPORTANT_KEYWORDS.includes(segment)
+      );
+
+      if (isImportant) {
         filtered.add(absolute.href);
       }
     } catch {
@@ -122,22 +132,30 @@ export async function crawlWebsite(startUrl: string) {
     text: string;
   }[] = [];
 
-  // Crawl homepage first
+  const visited = new Set<string>();
+
   console.log(`Crawling: ${startUrl}`);
 
   const home = await downloadPage(startUrl);
+
+  visited.add(home.url);
 
   pages.push({
     url: home.url,
     text: extractContent(home.html),
   });
 
-  // Only crawl important pages from homepage
-  for (const link of home.links.slice(0, MAX_PAGES - 1)) {
+  for (const link of home.links) {
+    if (visited.has(link)) continue;
+
+    if (pages.length >= MAX_PAGES) break;
+
     try {
       console.log(`Crawling: ${link}`);
 
       const page = await downloadPage(link);
+
+      visited.add(page.url);
 
       pages.push({
         url: page.url,
