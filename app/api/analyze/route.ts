@@ -51,6 +51,7 @@ export async function POST(req: Request) {
         "overview": {
           "executiveSummary": "",
           "industry": "",
+          "location": "",
           "mission": "",
           "vision": "",
           "usp": []
@@ -85,8 +86,15 @@ export async function POST(req: Request) {
 
       - Base every field only on the provided website content.
       - If information is unavailable, return an empty string or empty array.
-      - Keep executiveSummary between 150–250 words.
-      - Return 5–8 items wherever lists make sense.
+      - Keep executiveSummary between 60-70 words.
+      - Industry should be in the format:
+        "Financial Technology (Fintech)"
+        "Software as a Service (SaaS)"
+        "Artificial Intelligence (AI)"
+        "Electronic Commerce (E-commerce)"
+      - Use the full industry name followed by the common abbreviation in parentheses when applicable.
+      - If there is no widely used abbreviation, return only the full industry name.
+      - Return 5 items wherever lists make sense.
       - Do not invent facts.
 
       The "aiContextPackage" field must be a single plain-text string optimized for copying into ChatGPT, Claude, Gemini, Grok, or any other AI assistant.
