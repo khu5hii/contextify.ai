@@ -94,7 +94,7 @@ export async function POST(req: Request) {
         "Electronic Commerce (E-commerce)"
       - Use the full industry name followed by the common abbreviation in parentheses when applicable.
       - If there is no widely used abbreviation, return only the full industry name.
-      - Return 5 items wherever lists make sense.
+      - Return 5-6 items wherever lists make sense.
       - Do not invent facts.
 
       The "aiContextPackage" field must be a single plain-text string optimized for copying into ChatGPT, Claude, Gemini, Grok, or any other AI assistant.
