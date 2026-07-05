@@ -16,31 +16,36 @@ function download(filename: string, content: string, type: string) {
   URL.revokeObjectURL(url);
 }
 
-export function exportTxt(filename: string, text: string) {
-  download(`${filename}.txt`, text, "text/plain");
+export function exportTxt(filename: string, aiContextPackage: string) {
+  download(`${filename}.txt`, aiContextPackage, "text/plain");
 }
 
-export function exportMarkdown(filename: string, markdown: string) {
-  download(`${filename}.md`, markdown, "text/markdown");
+export function exportMarkdown(filename: string, aiContextPackage: string) {
+  download(`${filename}.md`, aiContextPackage, "text/markdown");
 }
 
-export function exportJson(filename: string, json: string) {
-  download(`${filename}.json`, json, "application/json");
+export function exportJson(filename: string, data: any) {
+  const { aiContextPackage, ...jsonData } = data;
+
+  download(
+    `${filename}.json`,
+    JSON.stringify(jsonData, null, 2),
+    "application/json"
+  );
 }
 
-export function exportPdf(filename: string, content: string) {
+export function exportPdf(filename: string, aiContextPackage: string) {
   const doc = new jsPDF();
 
   const margin = 15;
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
-
   const usableWidth = pageWidth - margin * 2;
 
-  doc.setFont("courier", "normal"); 
+  doc.setFont("courier", "normal");
   doc.setFontSize(10);
 
-  const lines = doc.splitTextToSize(content, usableWidth);
+  const lines = doc.splitTextToSize(aiContextPackage, usableWidth);
 
   let y = margin;
 
@@ -51,7 +56,7 @@ export function exportPdf(filename: string, content: string) {
     }
 
     doc.text(line, margin, y);
-    y += 5; 
+    y += 5;
   });
 
   doc.save(`${filename}.pdf`);
