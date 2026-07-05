@@ -1,4 +1,6 @@
 import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
+import AnalysisClient from "./AnalysisClient";
 
 export default async function AnalysisPage({
   params,
@@ -14,15 +16,8 @@ export default async function AnalysisPage({
   });
 
   if (!analysis) {
-    return <h1>Analysis not found.</h1>;
+    notFound();
   }
 
-  return (
-  <>
-    <header>
-      <h1>{(analysis.data as any).companyName}</h1>
-      <p>{(analysis.data as any).overview.industry}</p>
-    </header>
-  </>
-  )
+  return <AnalysisClient analysis={analysis} />;
 }
