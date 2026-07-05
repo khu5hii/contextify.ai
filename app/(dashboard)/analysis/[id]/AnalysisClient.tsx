@@ -279,12 +279,14 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Products
                   </p>
                   <ul className="space-y-1.5 pt-2">
-                    {data.products.products?.map((products: string, index: number) => (
-                      <li key={index} className="flex gap-2 text-sm">
-                        <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                        <span>{products}</span>
-                      </li>
-                    ))}
+                    {data.products.products?.map(
+                      (products: string, index: number) => (
+                        <li key={index} className="flex gap-2 text-sm">
+                          <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                          <span>{products}</span>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
 
@@ -295,12 +297,14 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Services
                   </p>
                   <ul className="space-y-1.5 pt-2">
-                    {data.products.services?.map((services: string, index: number) => (
-                      <li key={index} className="flex gap-2 text-sm">
-                        <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                        <span>{services}</span>
-                      </li>
-                    ))}
+                    {data.products.services?.map(
+                      (services: string, index: number) => (
+                        <li key={index} className="flex gap-2 text-sm">
+                          <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                          <span>{services}</span>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
 
@@ -311,12 +315,14 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Features
                   </p>
                   <ul className="space-y-1.5 pt-2">
-                    {data.products.features?.map((features: string, index: number) => (
-                      <li key={index} className="flex gap-2 text-sm">
-                        <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                        <span>{features}</span>
-                      </li>
-                    ))}
+                    {data.products.features?.map(
+                      (features: string, index: number) => (
+                        <li key={index} className="flex gap-2 text-sm">
+                          <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                          <span>{features}</span>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
 
@@ -345,27 +351,44 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Target Audience
                   </p>
                   <p className="leading-6 text-[#DBDBE0]">
-                    Stripe targets a broad spectrum of digital-first entities,
-                    ranging from individual developers and small SaaS startups
-                    to massive global marketplaces and traditional enterprises
-                    undergoing digital transformation. They focus on businesses
-                    that require scalable, reliable, and developer-friendly
-                    financial tools.
+                    {data.audience.summary}
                   </p>
                 </div>
 
                 {/* Persona */}
-                <div className="bg-[#17171A] rounded-3xl p-2 lg:p-5 lg:space-y-2 border border-[#262629] text-sm">
-                  <p
-                    className={`uppercase text-xs tracking-widest text-[#00BC6E] ${shareTechMono.className} `}
-                  >
-                    Persona · The Technical Founder
-                  </p>
-                  <p className="leading-6 text-[#DBDBE0]">
-                    Seeks a robust API with excellent documentation to get
-                    payments running instantly without worrying about legacy
-                    banking complexity.
-                  </p>
+                <div className="grid gap-4 lg:grid-cols-3">
+                  <div className="bg-[#17171A] rounded-3xl p-2 lg:p-5 lg:space-y-2 border border-[#262629] text-sm">
+                    <p
+                      className={`uppercase text-xs tracking-widest text-[#00BC6E] ${shareTechMono.className} `}
+                    >
+                      Persona · {data.audience.personas[0].title}
+                    </p>
+                    <p className="leading-6 text-[#DBDBE0]">
+                      {data.audience.personas[1].description}
+                    </p>
+                  </div>
+
+                  <div className="bg-[#17171A] rounded-3xl p-2 lg:p-5 lg:space-y-2 border border-[#262629] text-sm">
+                    <p
+                      className={`uppercase text-xs tracking-widest text-[#00BC6E] ${shareTechMono.className} `}
+                    >
+                      Persona · {data.audience.personas[1].title}
+                    </p>
+                    <p className="leading-6 text-[#DBDBE0]">
+                      {data.audience.personas[1].description}
+                    </p>
+                  </div>
+
+                  <div className="bg-[#17171A] rounded-3xl p-2 lg:p-5 lg:space-y-2 border border-[#262629] text-sm">
+                    <p
+                      className={`uppercase text-xs tracking-widest text-[#00BC6E] ${shareTechMono.className} `}
+                    >
+                      Persona · {data.audience.personas[2].title}
+                    </p>
+                    <p className="leading-6 text-[#DBDBE0]">
+                      {data.audience.personas[1].description}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Pain Points */}
@@ -376,30 +399,12 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Pain Points
                   </p>
                   <ul className="space-y-1.5 pt-2">
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      High complexity of global payment regulations
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Difficulty managing recurring billing and churn
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Integration friction with legacy banking systems
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Vulnerability to online payment fraud
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Inefficient reconciliation and financial reporting
-                    </li>
-                    <li className="flex gap-2 text-sm">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                      Inability to scale cross-border payments
-                    </li>
+                    {data.audience.painPoints?.map((painPoints: string, index: number) => (
+                      <li key={index} className="flex gap-2 text-sm">
+                        <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                        <span>{painPoints}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
