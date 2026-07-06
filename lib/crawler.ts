@@ -108,7 +108,7 @@ function filterLinks(baseUrl: string, links: string[]) {
       }
 
       // Prevent crawling extremely deep URLs
-      if (cleanSegments.length > 4) continue;
+      if (cleanSegments.length > 2) continue;
 
       // Keep pages if ANY segment is important
       const isImportant = cleanSegments.some((segment) =>
