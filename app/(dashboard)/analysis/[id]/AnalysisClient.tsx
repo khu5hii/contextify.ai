@@ -21,20 +21,24 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
   const aiContextPackage = data.aiContextPackage;
 
   const [saved, setSaved] = useState(false);
+  
+  async function saveAnalysis() {
+    const res = await fetch("/api/saved", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        analysisId: analysis.id,
+      }),
+    });
 
-  const handleSave = async () => {
-    if (!saved) {
-      await fetch("/api/saved-contexts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(analysis),
-      });
-    }
+    const result = await res.json();
 
-    setSaved((prev) => !prev);
-  };
+    console.log(result);
+
+    setSaved(result.saved);
+  }
 
   const [activeTab, setActiveTab] = useState("overview");
 
@@ -47,6 +51,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
   };
 
   const displayWebsite = new URL(data.website).hostname;
+
   return (
     <>
       <main className="mx-auto max-w-6xl px-4 pb-28 pt-4 lg:px-8 lg:pt-8">
@@ -84,7 +89,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
 
           <div className="flex flex-wrap gap-2">
             <button
-              onClick={handleSave}
+              onClick={saveAnalysis}
               className="inline-flex h-9 items-center gap-1.5 rounded-2xl border border-[#262629] bg-panel px-3 text-xs font-medium hover:bg-[#202024]"
             >
               {saved ? (
@@ -399,12 +404,14 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     Pain Points
                   </p>
                   <ul className="space-y-1.5 pt-2">
-                    {data.audience.painPoints?.map((painPoints: string, index: number) => (
-                      <li key={index} className="flex gap-2 text-sm">
-                        <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
-                        <span>{painPoints}</span>
-                      </li>
-                    ))}
+                    {data.audience.painPoints?.map(
+                      (painPoints: string, index: number) => (
+                        <li key={index} className="flex gap-2 text-sm">
+                          <span className="mt-2 size-1 shrink-0 rounded-full bg-[#6875f6]"></span>
+                          <span>{painPoints}</span>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
               </div>
