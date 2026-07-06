@@ -9,6 +9,21 @@ const shareTechMono = Share_Tech_Mono({
 });
 
 export default async function Dashboard() {
+  const totalAnalyses = await prisma.analysis.count();
+  const totalSavedContexts = await prisma.savedContext.count();
+
+  const startOfWeek = new Date();
+  startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  const thisWeek = await prisma.analysis.count({
+    where: {
+      createdAt: {
+        gte: startOfWeek,
+      },
+    },
+  });
+
   const analysis = await prisma.analysis.findFirst({
     orderBy: {
       createdAt: "desc",
@@ -62,7 +77,7 @@ export default async function Dashboard() {
                   <circle cx="4" cy="20" r="2" />
                 </svg>
               </div>
-              <p className="text-3xl font-semibold">0</p>
+              <p className="text-3xl font-semibold">{totalAnalyses}</p>
             </div>
 
             <div className="space-y-2 bg-[#141416] border border-[#262629] rounded-3xl p-6">
@@ -85,7 +100,7 @@ export default async function Dashboard() {
                   <path d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z" />
                 </svg>
               </div>
-              <p className="text-3xl font-semibold">0</p>
+              <p className="text-3xl font-semibold">{totalSavedContexts}</p>
             </div>
 
             <div className="space-y-2 bg-[#141416] border border-[#262629] rounded-3xl p-6">
@@ -109,7 +124,7 @@ export default async function Dashboard() {
                   <path d="m22 7-8.5 8.5-5-5L2 17" />
                 </svg>
               </div>
-              <p className="text-3xl font-semibold">0</p>
+              <p className="text-3xl font-semibold">{thisWeek}</p>
             </div>
           </section>
 
@@ -157,65 +172,69 @@ export default async function Dashboard() {
               </Link>
             </div>
 
-            <div className="flex content-between bg-[#141416] border border-[#262629] rounded-3xl gap-2 p-6 hover:bg-[#202024] cursor-pointer transition-all duration-100">
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold tracking-wider">
-                  {data.companyName || "No analyses yet"}
-                </p>
-                <p className="text-xs text-[#85858c]">
-                  {data.overview.industry} · {displayWebsite}
-                </p>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div>
-                  <div className="text-right">
-                    <p
-                      className={`uppercase text-[10px] tracking-widest text-[#00BC7B] ${shareTechMono.className} `}
-                    >
-                      READY
+            {analysis ? (
+              <Link href={`/analysis/${analysis?.id}`} className="block">
+                <div className="flex content-between bg-[#141416] border border-[#262629] rounded-3xl gap-2 p-6 hover:bg-[#202024] cursor-pointer transition-all duration-100">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold tracking-wider">
+                      {data.companyName || "No analyses yet"}
                     </p>
-                    <p className="text-[10px] text-[#85858c] tracking-widest">
-                      {analysis?.createdAt.toLocaleDateString()}
+                    <p className="text-xs text-[#85858c]">
+                      {data.overview.industry} · {displayWebsite}
                     </p>
                   </div>
-                </div>
 
-                <div className="text-[#85858C]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-arrow-up-right size-4 text-muted-foreground"
-                    aria-hidden="true"
-                  >
-                    <path d="M7 7h10v10"></path>
-                    <path d="M7 17 17 7"></path>
-                  </svg>
-                </div>
-              </div>
-            </div>
+                  <div className="flex items-center gap-4">
+                    <div>
+                      <div className="text-right">
+                        <p
+                          className={`uppercase text-[10px] tracking-widest text-[#00BC7B] ${shareTechMono.className} `}
+                        >
+                          READY
+                        </p>
+                        <p className="text-[10px] text-[#85858c] tracking-widest">
+                          {analysis?.createdAt.toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
 
-            <div className="flex flex-col items-center justify-center h-40 bg-[#141416] border border-[#262629] rounded-3xl gap-2 px-4 text-center">
-              <p className="text-sm font-semibold tracking-wider">
-                No analyses yet
-              </p>
-              <p className="text-[#81838c] text-xs">
-                Run your first intelligence brief in under 30 seconds.
-              </p>
-              <Link
-                href="/new"
-                className="flex items-center gap-2 font-semibold text-xs bg-gradient-to-r from-[#0549ab] to-[#620cac] px-4 py-2 rounded-4xl transition-all duration-100 hover:from-[#0a5bd6] hover:to-[#7b15d1] mt-2"
-              >
-                Create One
+                    <div className="text-[#85858C]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-arrow-up-right size-4 text-muted-foreground"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 7h10v10"></path>
+                        <path d="M7 17 17 7"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </Link>
-            </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center h-40 bg-[#141416] border border-[#262629] rounded-3xl gap-2 px-4 text-center">
+                <p className="text-sm font-semibold tracking-wider">
+                  No analyses yet
+                </p>
+                <p className="text-[#81838c] text-xs">
+                  Run your first intelligence brief in under 30 seconds.
+                </p>
+                <Link
+                  href="/new"
+                  className="flex items-center gap-2 font-semibold text-xs bg-gradient-to-r from-[#0549ab] to-[#620cac] px-4 py-2 rounded-4xl transition-all duration-100 hover:from-[#0a5bd6] hover:to-[#7b15d1] mt-2"
+                >
+                  Create One
+                </Link>
+              </div>
+            )}
           </section>
         </div>
       </main>
