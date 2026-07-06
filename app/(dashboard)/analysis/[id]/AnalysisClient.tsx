@@ -394,7 +394,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                       Persona · {data.audience.personas[0].title}
                     </p>
                     <p className="leading-6 text-[#DBDBE0]">
-                      {data.audience.personas[1].description}
+                      {data.audience.personas[0].description}
                     </p>
                   </div>
 
@@ -413,10 +413,10 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     <p
                       className={`uppercase text-xs tracking-widest text-[#00BC6E] ${shareTechMono.className} `}
                     >
-                      Persona · {data.audience.personas[2].title}
+                      Persona · {data.audience.personas[2]?.title ?? "Not Available"}
                     </p>
                     <p className="leading-6 text-[#DBDBE0]">
-                      {data.audience.personas[1].description}
+                      {data.audience.personas[2]?.description ?? "Not Available"}
                     </p>
                   </div>
                 </div>
@@ -594,7 +594,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                 </span>
 
                 <pre
-                  className={`text-xs text-[#DBDBE0] ${shareTechMono.className} scrollbar-hide max-h-[60vh] overflow-auto whitespace-pre-wrap break-words text-[11px] leading-relaxed text-[#f1f1f5]/80 `}
+                  className={`text-xs text-[#DBDBE0] ${shareTechMono.className} scrollbar-hide max-h-[60vh] overflow-auto whitespace-pre-wrap break-words text-[11px] leading-relaxed text-[#f1f1f5]/80 pl-3`}
                 >
                   {aiContextPackage}
                 </pre>
