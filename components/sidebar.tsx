@@ -9,8 +9,8 @@ export default function Sidebar() {
   const linkClass = (path: string) =>
     `flex items-center gap-3 rounded-4xl px-3 py-2 text-sm transition ${
       pathname === path
-        ? "bg-[#202024] text-[#828289]"
-        : "text-[#828289] hover:bg-[#1D1D1F] hover:text-white"
+        ? "bg-[#202024] text-white"
+        : "text-[#828289] hover:bg-[#1D1D1F] hover:text-white "
     }`;
 
   return (
