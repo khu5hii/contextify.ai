@@ -40,6 +40,28 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
     setSaved(result.saved);
   }
 
+  async function deleteAnalysis() {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this analysis?",
+    );
+
+    if (!confirmed) return;
+
+    const res = await fetch("/api/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        analysisId: analysis.id,
+      }),
+    });
+
+    if (res.ok) {
+      window.location.href = "/analyses";
+    }
+  }
+
   const [activeTab, setActiveTab] = useState("overview");
 
   const versions = {
@@ -127,7 +149,10 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
 
               <span>{saved ? "Saved" : "Save"}</span>
             </button>
-            <button className="inline-flex h-9 items-center gap-1.5 rounded-2xl border border-[#262629] bg-panel px-3 text-xs font-medium hover:bg-[#ee343b]/10 text-red-500">
+            <button
+              onClick={deleteAnalysis}
+              className="inline-flex h-9 items-center gap-1.5 rounded-2xl border border-[#262629] bg-panel px-3 text-xs font-medium hover:bg-[#ee343b]/10 text-red-500"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
