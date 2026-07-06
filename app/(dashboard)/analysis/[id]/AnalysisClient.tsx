@@ -76,7 +76,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
         {/* Header/ Company Name */}
         <header className="flex flex-wrap items-start gap-5 bg-[#141416] p-8 border border-[#262629] rounded-4xl">
           <div className=" min-w-0 flex-1">
-            <h1 className="text-3xl font-semibold pb-2">Stripe</h1>
+            <h1 className="text-3xl font-semibold pb-2">{data.companyName}</h1>
             <p className="text-sm text-[#85858c]">
               {data.overview.industry} · {displayWebsite}
             </p>
