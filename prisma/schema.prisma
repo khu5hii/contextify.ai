@@ -22,13 +22,14 @@ model Analysis {
   normalizedUrl String   @unique
   data          Json
   createdAt     DateTime @default(now())
+
+  savedContexts SavedContext[]
 }
 
 model SavedContext {
-  id        String   @id @default(cuid())
-  company   String
-  website   String?
-  industry  String?
-  analysis  Json
+  id         String   @id @default(cuid())
+  analysisId String   @unique
+  analysis   Analysis @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
 }
