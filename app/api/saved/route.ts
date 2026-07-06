@@ -44,16 +44,6 @@ export async function POST(req: Request) {
       saved: true,
     });
 
-    const saved = await prisma.savedContext.create({
-      data: {
-        analysisId,
-      },
-      include: {
-        analysis: true,
-      },
-    });
-
-    return Response.json(saved);
   } catch (error) {
     console.error(error);
 
