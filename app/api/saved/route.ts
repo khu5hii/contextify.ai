@@ -1,27 +1,65 @@
-import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function POST(req: NextRequest) {
-  const body = await req.json();
+export async function POST(req: Request) {
+  try {
+    const { analysisId } = await req.json();
 
-  const savedContext = await prisma.savedContext.create({
-    data: {
-      company: body.company,
-      website: body.website,
-      industry: body.industry,
-      analysis: body.analysis,
-    },
-  });
+    if (!analysisId) {
+      return Response.json(
+        { error: "Analysis ID is required" },
+        { status: 400 }
+      );
+    }
 
-  return NextResponse.json(savedContext);
-}
+    // Prevent duplicate saves
+    const existing = await prisma.savedContext.findUnique({
+      where: {
+        analysisId,
+      },
+    });
 
-export async function GET() {
-  const contexts = await prisma.savedContext.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+    if (existing) {
+      await prisma.savedContext.delete({
+        where: {
+          analysisId,
+        },
+      });
 
-  return NextResponse.json(contexts);
+      return Response.json({
+        saved: false,
+      });
+    }
+
+    await prisma.savedContext.create({
+      data: {
+        analysis: {
+          connect: {
+            id: analysisId,
+          },
+        },
+      },
+    });
+
+    return Response.json({
+      saved: true,
+    });
+
+    const saved = await prisma.savedContext.create({
+      data: {
+        analysisId,
+      },
+      include: {
+        analysis: true,
+      },
+    });
+
+    return Response.json(saved);
+  } catch (error) {
+    console.error(error);
+
+    return Response.json(
+      { error: "Failed to save context" },
+      { status: 500 }
+    );
+  }
 }
