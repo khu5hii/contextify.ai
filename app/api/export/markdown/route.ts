@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { getMarkdownContext } from "@/lib/ai-context/formatContext"; // wherever this function lives
+import { getMarkdownContext } from "@/lib/ai-context/formatContext";
 
 export async function GET() {
   const analyses = await prisma.analysis.findMany({
