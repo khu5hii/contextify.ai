@@ -229,16 +229,16 @@ export async function POST(req: Request) {
     return Response.json({
       id: saved.id,
     });
-  } catch (error) {
+  } catch (error: any) {
+    console.error("===== ANALYZE ERROR =====");
     console.error(error);
 
     return Response.json(
       {
-        error: "Failed to analyze website",
+        error: error?.message || String(error),
+        stack: error?.stack,
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
