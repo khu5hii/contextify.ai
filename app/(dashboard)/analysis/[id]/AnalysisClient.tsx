@@ -402,10 +402,10 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                     <p
                       className={`uppercase text-xs tracking-widest text-[#00BC6E] ${shareTechMono.className} `}
                     >
-                      Persona · {data.audience.personas[1].title}
+                      Persona · {data.audience.personas[1]?.title ?? "Not Available"}
                     </p>
                     <p className="leading-6 text-[#DBDBE0]">
-                      {data.audience.personas[1].description}
+                      {data.audience.personas[1]?.description ?? "Not Available"}
                     </p>
                   </div>
 
