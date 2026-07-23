@@ -594,7 +594,7 @@ export default function AnalysisClient({ analysis }: { analysis: any }) {
                 </span>
 
                 <pre
-                  className={`text-xs text-[#DBDBE0] ${shareTechMono.className} scrollbar-hide max-h-[60vh] overflow-auto whitespace-pre-wrap break-words text-[11px] leading-relaxed text-[#f1f1f5]/80 pl-3`}
+                  className={`text-xs text-[#DBDBE0] ${shareTechMono.className} scrollbar-hide max-h-[60vh] overflow-auto whitespace-pre-wrap wrap-break-word text-[11px] leading-relaxed text-[#f1f1f5]/80 pl-3`}
                 >
                   {aiContextPackage}
                 </pre>
