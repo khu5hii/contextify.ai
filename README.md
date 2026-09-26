@@ -77,6 +77,7 @@ Create a `.env` file:
 DATABASE_URL="your-database-url"
 NEXTAUTH_URL="http://localhost:3000"
 NEXTAUTH_SECRET="your-secret"
+GEMINI_API_KEY="your_gemini_api_key"
 ```
 
 Generate Prisma Client:
